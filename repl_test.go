@@ -6,25 +6,41 @@ import (
 
 func TestCleanInput(t *testing.T) {
 	cases := []struct {
-		input	string
-		expected	[]string
+		input    string
+		expected []string
 	}{
 		{
-			input:	"hello world",
-			expected: []string{"hello", "world"}
+			input:    "hello world",
+			expected: []string{"hello", "world"},
 		},
 		{
-			input: "testnowhitespace"
-			expected: []string{"testnowhitespace"}
+			input:    "testnowhitespace",
+			expected: []string{"testnowhitespace"},
 		},
 		{
-			input: "Hello World"
-			expected: []string{"hello", "world"}
+			input:    "Hello World",
+			expected: []string{"hello", "world"},
 		},
 		{
-			input: "testing leading whitespace    "
-			expected: []string{"testing", "leading", "whitespace"}
-		}
+			input:    "testing leading whitespace    ",
+			expected: []string{"testing", "leading", "whitespace"},
+		},
+		{
+			input:    "  leading spaces",
+			expected: []string{"leading", "spaces"},
+		},
+		{
+			input:    "multiple   spaces   between",
+			expected: []string{"multiple", "spaces", "between"},
+		},
+		{
+			input:    "UPPERCASE WORDS",
+			expected: []string{"uppercase", "words"},
+		},
+		{
+			input:    "",
+			expected: []string{},
+		},
 	}
 
 	for _, c := range cases {
